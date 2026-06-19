@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "assets/uploads"
+
+collections:
+  - name: "catalog"
+    label: "Shop Catalog"
+    files:
+      - name: "products"
+        label: "Products"
+        file: "products.json"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.name}} - ${{fields.price}}"
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "string"
+                hint: "Use lowercase letters, numbers, and dashes, like dragon-dice-tower."
+              - label: "Name"
+                name: "name"
+                widget: "string"
+              - label: "Price"
+                name: "price"
+                widget: "number"
+                value_type: "float"
+                min: 0
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["Home", "Gaming", "Desk", "Cosplay", "Other"]
+              - label: "Material"
+                name: "material"
+                widget: "string"
+                required: false
+              - label: "Color options"
+                name: "colors"
+                widget: "string"
+                required: false
+              - label: "Print time"
+                name: "time"
+                widget: "string"
+                required: false
+              - label: "Description"
+                name: "description"
+                widget: "text"
+                required: false
+              - label: "Product photo"
+                name: "image"
+                widget: "image"
+              - label: "Stripe payment link"
+                name: "paymentLink"
+                widget: "string"
+                required: false

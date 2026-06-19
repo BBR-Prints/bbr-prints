@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BBR Prints</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#shop" aria-label="BBR Prints home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path d="M8 30 24 39 40 30v7L24 46 8 37z" />
+            <path d="M8 20 24 29 40 20v7L24 36 8 27z" />
+            <path d="M8 10 24 1l16 9-16 9z" />
+          </svg>
+        </span>
+        <span>BBR Prints</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#shop">Shop</a>
+        <button class="nav-button custom-order-trigger" type="button">Custom order</button>
+      </nav>
+      <button class="cart-button" id="openCart" type="button" aria-label="Open cart">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6 6h15l-2 8H8L6 3H3" /><circle cx="9" cy="20" r="1.8" /><circle cx="18" cy="20" r="1.8" /></svg>
+        </span>
+        <span id="cartCount">0</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            Custom 3D printed goods,
+            <span class="built-by-rash">
+              <span class="initial">B</span>uilt <span class="initial">B</span>y
+              <span class="initial">R</span>ash
+            </span>
+          </p>
+          <h1 id="hero-title">Shop custom 3D prints.</h1>
+          <p>
+            Browse ready-to-order printed projects, pay through Stripe when available, or request a
+            custom print built around your size, color, and use.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#shop">View shop</a>
+            <button class="button dark custom-order-trigger" type="button">Request custom order</button>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Featured 3D printed products">
+          <img src="assets/hero-print-shop.svg" alt="Colorful 3D printed objects on a studio table" />
+        </div>
+      </section>
+
+      <section class="stats-band" aria-label="Store highlights">
+        <div>
+          <strong id="statProducts">0</strong>
+          <span>listed prints</span>
+        </div>
+        <div>
+          <strong>Made to order</strong>
+          <span>sizes, colors, and finishes</span>
+        </div>
+        <div>
+          <strong>Local or shipped</strong>
+          <span>Stripe or email orders</span>
+        </div>
+      </section>
+
+      <section class="section-header" id="shop">
+        <div>
+          <p class="eyebrow">Catalog</p>
+          <h2>Ready-to-sell projects</h2>
+        </div>
+        <div class="shop-tools">
+          <label class="search-field">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m16 16 5 5" /></svg>
+            </span>
+            <input id="searchInput" type="search" placeholder="Search prints" />
+          </label>
+          <select id="categoryFilter" aria-label="Filter by category">
+            <option value="all">All categories</option>
+            <option value="Home">Home</option>
+            <option value="Gaming">Gaming</option>
+            <option value="Desk">Desk</option>
+            <option value="Cosplay">Cosplay</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="product-grid" id="productGrid" aria-live="polite"></section>
+    </main>
+
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-labelledby="cart-title">
+      <div class="cart-panel">
+        <div class="cart-header">
+          <h2 id="cart-title">Order request</h2>
+          <button class="icon-button" id="closeCart" type="button" aria-label="Close cart">
+            <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+          <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">$0.00</strong>
+          </div>
+          <a class="button primary full" id="checkoutLink" href="mailto:?subject=3D%20Print%20Order%20Request">Request order</a>
+          <button class="button subtle full" id="clearCart" type="button">Clear cart</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside class="modal-backdrop" id="customOrderModal" aria-hidden="true" aria-labelledby="custom-order-title">
+      <div class="modal-panel" role="dialog" aria-modal="true">
+        <div class="cart-header">
+          <h2 id="custom-order-title">Request custom order</h2>
+          <button class="icon-button" id="closeCustomOrder" type="button" aria-label="Close custom order form">
+            <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+        <form class="custom-order-form" id="customOrderForm">
+          <div class="form-row">
+            <label>
+              Your name
+              <input id="customName" type="text" required placeholder="Your name" />
+            </label>
+            <label>
+              Your email
+              <input id="customEmail" type="email" required placeholder="you@example.com" />
+            </label>
+          </div>
+          <label>
+            What do you want printed?
+            <textarea id="customRequest" required rows="5" placeholder="Describe the item, size, color, material, quantity, and how you plan to use it."></textarea>
+          </label>
+          <div class="form-row">
+            <label>
+              Budget
+              <input id="customBudget" type="text" placeholder="$25-$50" />
+            </label>
+            <label>
+              Needed by
+              <input id="customDeadline" type="text" placeholder="No rush, or a date" />
+            </label>
+          </div>
+          <label>
+            Pickup or shipping
+            <input id="customDelivery" type="text" placeholder="Local pickup, shipping, or not sure" />
+          </label>
+          <button class="button primary full" type="submit">Open email request</button>
+        </form>
+      </div>
+    </aside>
+
+    <template id="productCardTemplate">
+      <article class="product-card">
+        <div class="product-media">
+          <img alt="" />
+          <span class="category-pill"></span>
+        </div>
+        <div class="product-body">
+          <div class="product-title-row">
+            <h3></h3>
+            <strong class="price"></strong>
+          </div>
+          <p class="description"></p>
+          <dl class="details"></dl>
+          <div class="card-actions">
+            <button class="button dark add-button" type="button">Add to cart</button>
+            <a class="button primary pay-link" href="#" target="_blank" rel="noopener">Pay with Stripe</a>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="products.js?v=one-site-admin"></script>
+    <script src="app.js?v=decap-cms"></script>
+  </body>
+</html>
