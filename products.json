@@ -1,40 +1,47 @@
 {
   "products": [
     {
-      "id": "planter",
-      "name": "Ripple Desk Planter",
-      "price": 18,
-      "category": "Home",
+      "paymentLink": "",
       "material": "Matte PLA",
-      "colors": "Sage, coral, white",
+      "price": 18,
+      "name": "Ripple Desk Planter",
       "time": "5 hours",
-      "description": "A watertight inner cup and a rippled outer shell for succulents, herbs, or desk plants.",
+      "colors": "Sage, coral, white",
+      "id": "planter",
       "image": "assets/product-planter.svg",
-      "paymentLink": ""
+      "description": "A watertight inner cup and a rippled outer shell for succulents, herbs, or desk plants.",
+      "category": "Home"
     },
     {
-      "id": "dice-tower",
-      "name": "Castle Dice Tower",
-      "price": 32,
-      "category": "Gaming",
+      "paymentLink": "",
       "material": "PLA+",
-      "colors": "Stone gray, black, bronze",
+      "price": 32,
+      "name": "Castle Dice Tower",
       "time": "11 hours",
-      "description": "A tabletop dice tower with textured walls, removable tray, and satisfying roll path.",
+      "colors": "Stone gray, black, bronze",
+      "id": "dice-tower",
       "image": "assets/product-dice-tower.svg",
-      "paymentLink": ""
+      "description": "A tabletop dice tower with textured walls, removable tray, and satisfying roll path.",
+      "category": "Gaming"
     },
     {
-      "id": "cable-dock",
-      "name": "Magnetic Cable Dock",
-      "price": 14,
-      "category": "Desk",
+      "paymentLink": "",
       "material": "PETG",
-      "colors": "Black, blue, orange",
+      "price": 14,
+      "name": "Magnetic Cable Dock",
       "time": "2 hours",
-      "description": "A low-profile organizer that keeps charging cables, earbuds, and small tools in reach.",
+      "colors": "Black, blue, orange",
+      "id": "cable-dock",
       "image": "assets/product-cable-dock.svg",
-      "paymentLink": ""
+      "description": "A low-profile organizer that keeps charging cables, earbuds, and small tools in reach.",
+      "category": "Desk"
+    },
+    {
+      "name": "6 Position Sex Die",
+      "price": 20,
+      "category": "Other",
+      "image": "assets/uploads/img_0481.jpg",
+      "id": "Erotic Die"
     }
   ]
 }
