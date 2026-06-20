@@ -98,7 +98,8 @@ img {
 
 .brand-mark svg,
 .icon svg,
-.icon-button svg {
+.icon-button svg,
+.media-arrow svg {
   height: 22px;
   width: 22px;
 }
@@ -315,6 +316,7 @@ h3 {
 }
 
 .section-header,
+.reviews-section,
 .manager,
 .orders {
   display: grid;
@@ -382,10 +384,52 @@ textarea {
   position: relative;
 }
 
-.product-media img {
+.media-stage,
+.media-stage img,
+.media-stage video {
   height: 100%;
-  object-fit: cover;
   width: 100%;
+}
+
+.media-stage img,
+.media-stage video {
+  object-fit: cover;
+}
+
+.media-arrow {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(23, 33, 31, 0.14);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+}
+
+.media-prev {
+  left: 12px;
+}
+
+.media-next {
+  right: 12px;
+}
+
+.media-count {
+  background: rgba(23, 33, 31, 0.78);
+  border-radius: 999px;
+  bottom: 12px;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 5px 9px;
+  position: absolute;
+  right: 12px;
 }
 
 .category-pill {
@@ -454,6 +498,70 @@ textarea {
 .card-actions .pay-link {
   flex: 1;
   min-width: 130px;
+}
+
+.reviews-section {
+  background: #eff7f8;
+  grid-template-columns: minmax(260px, 0.75fr) minmax(280px, 420px) minmax(320px, 1fr);
+  padding-bottom: 76px;
+}
+
+.reviews-copy p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.review-form-panel,
+.review-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.review-form-panel {
+  padding: 18px;
+}
+
+.review-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.review-note {
+  color: var(--green);
+  font-weight: 800;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.review-list {
+  display: grid;
+  gap: 14px;
+}
+
+.review-card {
+  padding: 18px;
+}
+
+.review-card-header {
+  align-items: start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.review-rating {
+  color: var(--amber);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.review-card p {
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 12px 0 0;
 }
 
 .manager {
@@ -664,6 +772,7 @@ label {
   .hero,
   .manager,
   .orders,
+  .reviews-section,
   .section-header {
     grid-template-columns: 1fr;
   }

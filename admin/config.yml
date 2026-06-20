@@ -53,7 +53,56 @@ collections:
               - label: "Product photo"
                 name: "image"
                 widget: "image"
+                hint: "Main fallback photo. Use Product media below for multiple photos or videos."
+              - label: "Product media"
+                name: "media"
+                widget: "list"
+                required: false
+                summary: "{{fields.type}} - {{fields.alt}}"
+                fields:
+                  - label: "Media type"
+                    name: "type"
+                    widget: "select"
+                    options: ["image", "video"]
+                    default: "image"
+                  - label: "Image"
+                    name: "image"
+                    widget: "image"
+                    required: false
+                  - label: "Video"
+                    name: "video"
+                    widget: "file"
+                    required: false
+                    media_library:
+                      config:
+                        multiple: false
+                  - label: "Alt text"
+                    name: "alt"
+                    widget: "string"
+                    required: false
               - label: "Stripe payment link"
                 name: "paymentLink"
                 widget: "string"
                 required: false
+      - name: "reviews"
+        label: "Approved Reviews"
+        file: "reviews.json"
+        fields:
+          - label: "Reviews"
+            name: "reviews"
+            widget: "list"
+            summary: "{{fields.name}} - {{fields.rating}} stars"
+            fields:
+              - label: "Customer name"
+                name: "name"
+                widget: "string"
+              - label: "Rating"
+                name: "rating"
+                widget: "number"
+                min: 1
+                max: 5
+                value_type: "int"
+                default: 5
+              - label: "Review"
+                name: "message"
+                widget: "text"

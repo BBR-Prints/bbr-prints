@@ -9,12 +9,17 @@ const cartTotal = document.querySelector("#cartTotal");
 const checkoutLink = document.querySelector("#checkoutLink");
 const customOrderModal = document.querySelector("#customOrderModal");
 const customOrderForm = document.querySelector("#customOrderForm");
+const reviewForm = document.querySelector("#reviewForm");
+const reviewList = document.querySelector("#reviewList");
+const reviewNote = document.querySelector("#reviewNote");
 
 const CART_KEY = "layerlab-cart";
 const EMAIL_KEY = "layerlab-email";
-const OWNER_EMAIL = "you@example.com";
+const REVIEWS_KEY = "bbrprints-reviews";
+const OWNER_EMAIL = "bbrprints.shop@gmail.com";
 
 let products = window.catalogProducts || [];
+let reviews = window.shopReviews || [];
 let cart = load(CART_KEY, []);
 
 function load(key, fallback) {
@@ -38,6 +43,54 @@ function money(value) {
 
 function hasStripeLink(product) {
   return typeof product.paymentLink === "string" && product.paymentLink.startsWith("https://");
+}
+
+function isVideo(src = "") {
+  return /\.(mp4|mov|m4v|webm|ogg)$/i.test(src.split("?")[0]);
+}
+
+function getProductMedia(product) {
+  const media = Array.isArray(product.media)
+    ? product.media
+        .map((item) => {
+          const src = item.src || item.image || item.video || "";
+          if (!src) return null;
+          return {
+            src,
+            type: item.type || (isVideo(src) ? "video" : "image"),
+            alt: item.alt || product.name,
+          };
+        })
+        .filter(Boolean)
+    : [];
+
+  if (media.length) return media;
+
+  return [
+    {
+      src: product.image || "assets/product-planter.svg",
+      type: isVideo(product.image) ? "video" : "image",
+      alt: product.name,
+    },
+  ];
+}
+
+function renderProductMedia(stage, media, index) {
+  stage.innerHTML = "";
+  const item = media[index];
+  const element = document.createElement(item.type === "video" ? "video" : "img");
+
+  if (item.type === "video") {
+    element.controls = true;
+    element.playsInline = true;
+    element.preload = "metadata";
+    element.setAttribute("aria-label", item.alt);
+  } else {
+    element.alt = item.alt;
+  }
+
+  element.src = item.src;
+  stage.append(element);
 }
 
 function productMatches(product) {
@@ -69,6 +122,19 @@ async function loadCatalog() {
   }
 }
 
+async function loadReviews() {
+  try {
+    const response = await fetch("reviews.json", { cache: "no-store" });
+    if (!response.ok) return;
+    const data = await response.json();
+    if (Array.isArray(data.reviews)) {
+      reviews = data.reviews;
+    }
+  } catch {
+    // File previews may block fetch; reviews.js remains the local fallback.
+  }
+}
+
 function renderProducts() {
   productGrid.innerHTML = "";
   const visibleProducts = products.filter(productMatches);
@@ -82,12 +148,30 @@ function renderProducts() {
   visibleProducts.forEach((product) => {
     const card = productTemplate.content.cloneNode(true);
     const article = card.querySelector(".product-card");
-    const image = card.querySelector("img");
+    const mediaStage = card.querySelector(".media-stage");
+    const mediaPrev = card.querySelector(".media-prev");
+    const mediaNext = card.querySelector(".media-next");
+    const mediaCount = card.querySelector(".media-count");
     const details = card.querySelector(".details");
     const payLink = card.querySelector(".pay-link");
+    const media = getProductMedia(product);
+    let mediaIndex = 0;
 
-    image.src = product.image;
-    image.alt = product.name;
+    renderProductMedia(mediaStage, media, mediaIndex);
+    mediaCount.textContent = `${mediaIndex + 1} / ${media.length}`;
+    if (media.length < 2) {
+      mediaPrev.remove();
+      mediaNext.remove();
+      mediaCount.remove();
+    } else {
+      const updateMedia = (nextIndex) => {
+        mediaIndex = (nextIndex + media.length) % media.length;
+        renderProductMedia(mediaStage, media, mediaIndex);
+        mediaCount.textContent = `${mediaIndex + 1} / ${media.length}`;
+      };
+      mediaPrev.addEventListener("click", () => updateMedia(mediaIndex - 1));
+      mediaNext.addEventListener("click", () => updateMedia(mediaIndex + 1));
+    }
     card.querySelector(".category-pill").textContent = product.category;
     card.querySelector("h3").textContent = product.name;
     card.querySelector(".price").textContent = money(product.price);
@@ -164,7 +248,7 @@ function renderCart() {
     const remove = document.createElement("button");
 
     item.className = "cart-item";
-    image.src = product.image;
+    image.src = getProductMedia(product)[0].src;
     image.alt = product.name;
     title.textContent = product.name;
     meta.textContent = `${cartItem.quantity} x ${money(product.price)}`;
@@ -181,6 +265,38 @@ function renderCart() {
   cartCount.textContent = quantity;
   cartTotal.textContent = money(total);
   updateCheckoutLink(total);
+}
+
+function renderReviews() {
+  const savedReviews = load(REVIEWS_KEY, []);
+  const allReviews = [...savedReviews, ...reviews].filter((review) => review.name && review.message);
+
+  reviewList.innerHTML = "";
+
+  if (!allReviews.length) {
+    reviewList.innerHTML = '<div class="empty-state">No reviews yet. Be the first to leave one.</div>';
+    return;
+  }
+
+  allReviews.forEach((review) => {
+    const card = document.createElement("article");
+    const header = document.createElement("div");
+    const name = document.createElement("h3");
+    const rating = document.createElement("span");
+    const message = document.createElement("p");
+
+    card.className = "review-card";
+    header.className = "review-card-header";
+    name.textContent = review.name;
+    rating.className = "review-rating";
+    const ratingValue = Math.min(5, Math.max(1, Number(review.rating) || 5));
+    rating.textContent = `${"★".repeat(ratingValue)}${"☆".repeat(5 - ratingValue)}`;
+    message.textContent = review.message;
+
+    header.append(name, rating);
+    card.append(header, message);
+    reviewList.append(card);
+  });
 }
 
 function updateCheckoutLink(total) {
@@ -290,6 +406,31 @@ customOrderForm.addEventListener("submit", (event) => {
   closeCustomOrder();
 });
 
+reviewForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const formData = new FormData(reviewForm);
+  const newReview = {
+    name: document.querySelector("#reviewName").value.trim(),
+    rating: document.querySelector("#reviewRating").value,
+    message: document.querySelector("#reviewMessage").value.trim(),
+  };
+  const savedReviews = load(REVIEWS_KEY, []);
+  localStorage.setItem(REVIEWS_KEY, JSON.stringify([newReview, ...savedReviews]));
+  renderReviews();
+  reviewForm.reset();
+  reviewNote.textContent = "Thanks. Your review was added here and sent to BBR Prints.";
+
+  try {
+    await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    });
+  } catch {
+    reviewNote.textContent = "Thanks. Your review was added here. If sending fails, try again from the live site.";
+  }
+});
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeCart();
@@ -297,7 +438,8 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-loadCatalog().then(() => {
+Promise.all([loadCatalog(), loadReviews()]).then(() => {
   renderProducts();
   renderCart();
+  renderReviews();
 });
