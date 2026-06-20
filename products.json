@@ -1,15 +1,7 @@
 {
   "products": [
     {
-      "id": "planter",
-      "name": "Ripple Desk Planter",
-      "price": 18,
-      "category": "Home",
-      "material": "Matte PLA",
-      "colors": "Sage, coral, white",
-      "time": "5 hours",
-      "description": "A watertight inner cup and a rippled outer shell for succulents, herbs, or desk plants.",
-      "image": "assets/product-planter.svg",
+      "paymentLink": "",
       "media": [
         {
           "type": "image",
@@ -27,18 +19,18 @@
           "alt": "Side view of ripple desk planter"
         }
       ],
-      "paymentLink": ""
+      "material": "Matte PLA",
+      "price": 18,
+      "name": "Ripple Desk Planter",
+      "time": "5 hours",
+      "colors": "Sage, coral, white",
+      "id": "planter",
+      "image": "assets/product-planter.svg",
+      "description": "A watertight inner cup and a rippled outer shell for succulents, herbs, or desk plants.",
+      "category": "Home"
     },
     {
-      "id": "dice-tower",
-      "name": "Castle Dice Tower",
-      "price": 32,
-      "category": "Gaming",
-      "material": "PLA+",
-      "colors": "Stone gray, black, bronze",
-      "time": "11 hours",
-      "description": "A tabletop dice tower with textured walls, removable tray, and satisfying roll path.",
-      "image": "assets/product-dice-tower.svg",
+      "paymentLink": "",
       "media": [
         {
           "type": "image",
@@ -56,18 +48,18 @@
           "alt": "Castle dice tower tray view"
         }
       ],
-      "paymentLink": ""
+      "material": "PLA+",
+      "price": 32,
+      "name": "Castle Dice Tower",
+      "time": "11 hours",
+      "colors": "Stone gray, black, bronze",
+      "id": "dice-tower",
+      "image": "assets/product-dice-tower.svg",
+      "description": "A tabletop dice tower with textured walls, removable tray, and satisfying roll path.",
+      "category": "Gaming"
     },
     {
-      "id": "cable-dock",
-      "name": "Magnetic Cable Dock",
-      "price": 14,
-      "category": "Desk",
-      "material": "PETG",
-      "colors": "Black, blue, orange",
-      "time": "2 hours",
-      "description": "A low-profile organizer that keeps charging cables, earbuds, and small tools in reach.",
-      "image": "assets/product-cable-dock.svg",
+      "paymentLink": "",
       "media": [
         {
           "type": "image",
@@ -85,7 +77,36 @@
           "alt": "Side view of magnetic cable dock"
         }
       ],
-      "paymentLink": ""
+      "material": "PETG",
+      "price": 14,
+      "name": "Magnetic Cable Dock",
+      "time": "2 hours",
+      "colors": "Black, blue, orange",
+      "id": "cable-dock",
+      "image": "assets/product-cable-dock.svg",
+      "description": "A low-profile organizer that keeps charging cables, earbuds, and small tools in reach.",
+      "category": "Desk"
+    },
+    {
+      "id": "Nail Stand",
+      "name": "3D Printed Nail Stand",
+      "price": 20,
+      "description": "3D Printed Nail Stand for Holding & Painitng Nails. Magnets Not included. 6 mm magnets should be purchased for these and slotted into the holes on the stand and pieces.",
+      "image": "assets/uploads/img_0529.png",
+      "media": [
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0530.png"
+        },
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0531.png"
+        },
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0532.png"
+        }
+      ]
     }
   ]
 }
