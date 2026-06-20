@@ -96,7 +96,7 @@
       "media": [
         {
           "type": "image",
-          "image": "assets/uploads/img_0530.png"
+          "image": "assets/uploads/img_0529.png"
         },
         {
           "type": "image",
@@ -105,6 +105,10 @@
         {
           "type": "image",
           "image": "assets/uploads/img_0532.png"
+        },
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0530.png"
         }
       ]
     }
