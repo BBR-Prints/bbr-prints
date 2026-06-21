@@ -1,93 +1,6 @@
 {
   "products": [
     {
-      "paymentLink": "",
-      "media": [
-        {
-          "type": "image",
-          "image": "assets/product-planter.svg",
-          "alt": "Ripple desk planter"
-        },
-        {
-          "type": "image",
-          "image": "assets/product-planter-detail.svg",
-          "alt": "Close detail view of ripple desk planter"
-        },
-        {
-          "type": "image",
-          "image": "assets/product-planter-side.svg",
-          "alt": "Side view of ripple desk planter"
-        }
-      ],
-      "material": "Matte PLA",
-      "price": 18,
-      "name": "Ripple Desk Planter",
-      "time": "5 hours",
-      "colors": "Sage, coral, white",
-      "id": "planter",
-      "image": "assets/product-planter.svg",
-      "description": "A watertight inner cup and a rippled outer shell for succulents, herbs, or desk plants.",
-      "category": "Home"
-    },
-    {
-      "paymentLink": "",
-      "media": [
-        {
-          "type": "image",
-          "image": "assets/product-dice-tower.svg",
-          "alt": "Castle dice tower"
-        },
-        {
-          "type": "image",
-          "image": "assets/product-dice-tower-detail.svg",
-          "alt": "Close detail view of castle dice tower"
-        },
-        {
-          "type": "image",
-          "image": "assets/product-dice-tower-tray.svg",
-          "alt": "Castle dice tower tray view"
-        }
-      ],
-      "material": "PLA+",
-      "price": 32,
-      "name": "Castle Dice Tower",
-      "time": "11 hours",
-      "colors": "Stone gray, black, bronze",
-      "id": "dice-tower",
-      "image": "assets/product-dice-tower.svg",
-      "description": "A tabletop dice tower with textured walls, removable tray, and satisfying roll path.",
-      "category": "Gaming"
-    },
-    {
-      "paymentLink": "",
-      "media": [
-        {
-          "type": "image",
-          "image": "assets/product-cable-dock.svg",
-          "alt": "Magnetic cable dock"
-        },
-        {
-          "type": "image",
-          "image": "assets/product-cable-dock-detail.svg",
-          "alt": "Close detail view of magnetic cable dock"
-        },
-        {
-          "type": "image",
-          "image": "assets/product-cable-dock-side.svg",
-          "alt": "Side view of magnetic cable dock"
-        }
-      ],
-      "material": "PETG",
-      "price": 14,
-      "name": "Magnetic Cable Dock",
-      "time": "2 hours",
-      "colors": "Black, blue, orange",
-      "id": "cable-dock",
-      "image": "assets/product-cable-dock.svg",
-      "description": "A low-profile organizer that keeps charging cables, earbuds, and small tools in reach.",
-      "category": "Desk"
-    },
-    {
       "id": "Nail Stand",
       "name": "3D Printed Nail Stand",
       "price": 20,
@@ -110,7 +23,8 @@
           "type": "image",
           "image": "assets/uploads/img_0530.png"
         }
-      ]
+      ],
+      "category": "Other"
     },
     {
       "id": "Batman Beyond Figurine",
