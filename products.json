@@ -63,6 +63,23 @@
           "image": "assets/uploads/view-recent-photos.png"
         }
       ]
+    },
+    {
+      "id": "Erotic Die",
+      "name": "12 Position Freaky Die",
+      "price": 20,
+      "category": "Other",
+      "description": "Custom 12 Position Freaky Die",
+      "media": [
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0488.jpg"
+        },
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0481.jpg"
+        }
+      ]
     }
   ]
 }
