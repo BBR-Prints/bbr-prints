@@ -111,6 +111,40 @@
           "image": "assets/uploads/img_0530.png"
         }
       ]
+    },
+    {
+      "id": "Batman Beyond Figurine",
+      "name": "Batman Beyond Figurine",
+      "price": 25,
+      "category": "Other",
+      "description": "Approximately 3.5\" tall, 3D Printed, Hand Painted, Batman Beyond Figurine",
+      "image": "assets/uploads/img_0553.png",
+      "media": [
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0554.png"
+        },
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0555.png"
+        },
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0555.png"
+        },
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0556.png"
+        },
+        {
+          "type": "image",
+          "image": "assets/uploads/img_0557.png"
+        },
+        {
+          "type": "image",
+          "image": "assets/uploads/view-recent-photos.png"
+        }
+      ]
     }
   ]
 }
